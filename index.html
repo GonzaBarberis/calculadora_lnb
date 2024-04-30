@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculadora LNB</title>
+    <link rel="icon" href="https://laliganacional.com.ar/laliga/images/logopelota.svg" type="image/icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+
+        color: #333;
+        background-image: url("IMG/fondo1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        height: 100vh;
+        width: 95vw;
+      }
+
+      /* h1 {
+        text-align: center;
+        color: #ffffff;
+      } */
+      h1 {
+        text-align: center;
+        color: #ffffff; /* Asegúrate de que el color contrasta bien con el fondo */
+        font-size: 48px; /* Ajusta el tamaño de la fuente según las necesidades de tu diseño */
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* O elige una tipografía que se ajuste al tema del baloncesto */
+        font-weight: bold; /* Hace que el texto sea más grueso y legible */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Añade sombra para mejorar la legibilidad sobre fondos complejos */
+        margin: 0.67em 0; /* Espaciado estándar para h1, ajustable según necesidad */
+        padding: 20px; /* Padding superior e inferior para dar espacio alrededor del texto */
+        background: rgba(0, 0, 0, 0.8); /* Opcional: un fondo sutil para ayudar a que el texto resalte más */
+        border-radius: 10px; /* Opcional: bordes redondeados si se añade un fondo */
+        width: fit-content; /* Ajusta el ancho al contenido y centra */
+        margin-left: auto; /* Centrado horizontal con margen automático */
+        margin-right: auto; /* Centrado horizontal con margen automático */
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        background-color: white;
+      }
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: center;
+        border-bottom: 1px solid #dddddd;
+      }
+      th {
+        background-color: #bc3908;
+        color: #ffffff;
+        font-size: 18px;
+      }
+      td {
+        font-size: 14px;
+      }
+      tr:nth-last-child(2) {
+        background-color: #ffd700;
+      }
+      tr:last-child {
+        background-color: #9d0208;
+        color: white;
+      }
+      .reinicio {
+        background-color: #1e6900;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+      }
+      .reinicio:hover {
+        background-color: #134201;
+      }
+      .match {
+        background-color: #ffffff;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 900px;
+      }
+      button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      .todo {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .tabla {
+        width: 600px;
+        min-width: 300px;
+      }
+      #matches {
+        min-width: 300px;
+        padding: 20px;
+        max-width: 900px;
+      }
+      .pFecha {
+        font-weight: 700;
+        margin-right: 10px;
+      }
+      .winner {
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      button:disabled {
+        background-color: grey;
+        cursor: not-allowed;
+      }
+
+      .aumentar {
+        transition: transform 0.3s ease;
+      }
+      .aumentar:hover {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Calculadora de posiciones 'Zona Permanencia' LNB</h1>
+
+    <div class="todo content">
+      <div class="tabla">
+        <table id="statsTable">
+          <thead>
+            <tr>
+              <th>Equipo</th>
+              <th>PG</th>
+              <th>PJ</th>
+              <th>PTS</th>
+              <th>PORC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-team="RIACHUELO (LR)">
+              <td>RIACHUELO (LR)</td>
+              <td>14</td>
+              <!-- ganados -->
+              <td>33</td>
+              <!-- jugados -->
+              <td>47</td>
+              <!-- puntos -->
+              <td>0.424%</td>
+            </tr>
+
+            <tr data-team="FERRO">
+              <td>FERRO</td>
+              <td>13</td>
+              <!-- ganados -->
+              <td>33</td>
+              <!-- jugados -->
+              <td>46</td>
+              <!-- puntos -->
+              <td>0.393%</td>
+            </tr>
+
+            <tr data-team="ZARATE BASKET">
+              <td>ZARATE BASKET</td>
+              <td>13</td>
+              <!-- ganados -->
+              <td>34</td>
+              <!-- jugados -->
+              <td>47</td>
+              <!-- puntos -->
+              <td>0.382%</td>
+            </tr>
+
+            <tr data-team="INDEPENDIENTE (O)">
+              <td>INDEPENDIENTE (O)</td>
+              <td>12</td>
+              <!-- ganados -->
+              <td>33</td>
+              <!-- jugados -->
+              <td>45</td>
+              <!-- puntos -->
+              <td>0.363%</td>
+            </tr>
+
+            <tr data-team="LA UNION FSA.">
+              <td>LA UNION FSA.</td>
+              <td>12</td>
+              <!-- ganados -->
+              <td>35</td>
+              <!-- jugados -->
+              <td>46</td>
+              <!-- puntos -->
+              <td>0.314%</td>
+            </tr>
+
+            <tr data-team="COMUNICACIONES">
+              <td>COMUNICACIONES</td>
+              <td>9</td>
+              <!-- ganados -->
+              <td>32</td>
+              <!-- jugados -->
+              <td>41</td>
+              <!-- puntos -->
+              <td>0.281%</td>
+            </tr>
+
+            <tr data-team="ARGENTINO (J)">
+              <td>ARGENTINO (J)</td>
+              <td>9</td>
+              <!-- ganados -->
+              <td>33</td>
+              <!-- jugados -->
+              <td>42</td>
+              <!-- puntos -->
+              <td>0.272%</td>
+            </tr>
+
+            <tr data-team="UNION (SF)">
+              <td>UNION (SF)</td>
+              <td>8</td>
+              <!-- ganados -->
+              <td>33</td>
+              <!-- jugados -->
+              <td>41</td>
+              <!-- puntos -->
+              <td>0.242%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button onclick="window.location.reload();" class="reinicio aumentar">Reiniciar Resultados</button>
+      </div>
+
+      <div id="matches">
+        <!-- Los partidos se insertarán aquí desde JavaScript -->
+      </div>
+    </div>
+
+    <script>
+      // Datos de los partidos
+      const matches = [
+        { local: "ARGENTINO (J)", visitante: "RIACHUELO (LR)", Fecha: "30-04-2024 22:00" },
+        { local: "PLATENSE ", visitante: " RIACHUELO (LR) ", Fecha: "02-05-2024 0:00" },
+        { local: "LA UNION FSA. ", visitante: " COMUNICACIONES ", Fecha: "03-05-2024 0:00" },
+        { local: "GIMNASIA (CR) ", visitante: " RIACHUELO (LR) ", Fecha: "04-05-2024 0:00" },
+        { local: "FERRO ", visitante: " OBRAS ", Fecha: "05-05-2024 0:00" },
+        { local: "OBERA ", visitante: " COMUNICACIONES ", Fecha: "05-05-2024 20:00" },
+        { local: "ZARATE BASKET ", visitante: " ARGENTINO (J) ", Fecha: "06-05-2024 0:00" },
+        { local: "INDEPENDIENTE (O) ", visitante: " UNION (SF) ", Fecha: "06-05-2024 0:00" },
+        { local: "INSTITUTO ", visitante: " UNION (SF) ", Fecha: "08-05-2024 0:00" },
+        { local: "BOCA ", visitante: " ARGENTINO (J) ", Fecha: "08-05-2024 0:00" },
+        { local: "ZARATE BASKET ", visitante: " GIMNASIA (CR) ", Fecha: "10-05-2024 0:00" },
+        { local: "RIACHUELO (LR) ", visitante: " UNION (SF) ", Fecha: "10-05-2024 0:00" },
+        { local: "PEÑAROL (MDP) ", visitante: " ARGENTINO (J) ", Fecha: "10-05-2024 0:00" },
+        { local: "PEÑAROL (MDP) ", visitante: " FERRO ", Fecha: "12-05-2024 0:00" },
+        { local: "BOCA ", visitante: " INDEPENDIENTE (O) ", Fecha: "13-05-2024 0:00" },
+        { local: "UNION (SF) ", visitante: " COMUNICACIONES ", Fecha: "14-05-2024 0:00" },
+        { local: "FERRO ", visitante: " INDEPENDIENTE (O) ", Fecha: "15-05-2024 0:00" },
+        { local: "LA UNION FSA. ", visitante: " SAN LORENZO ", Fecha: "16-05-2024 0:00" },
+        { local: "RIACHUELO (LR) ", visitante: " OBERA ", Fecha: "17-05-2024 0:00" },
+        { local: "PEÑAROL (MDP) ", visitante: " INDEPENDIENTE (O) ", Fecha: "17-05-2024 0:00" },
+        { local: "ARGENTINO (J) ", visitante: " COMUNICACIONES ", Fecha: "18-05-2024 0:00" },
+        { local: "UNION (SF) ", visitante: " OBERA ", Fecha: "19-05-2024 0:00" },
+        { local: "FERRO ", visitante: " ZARATE BASKET ", Fecha: "20-05-2024 0:00" },
+        { local: "LA UNION FSA. ", visitante: " OBRAS ", Fecha: "21-05-2024 0:00" },
+        { local: "INDEPENDIENTE (O) ", visitante: " PLATENSE ", Fecha: "21-05-2024 0:00" },
+        { local: "FERRO ", visitante: " SAN LORENZO ", Fecha: "23-05-2024 0:00" },
+        { local: "COMUNICACIONES ", visitante: " BOCA ", Fecha: "23-05-2024 0:00" },
+      ];
+
+      function createMatchElement(match) {
+        const div = document.createElement("div");
+        div.className = "match";
+
+        const winnerSpan = document.createElement("span");
+        winnerSpan.className = "winner";
+        const fecha = document.createElement("p");
+        fecha.className = "pFecha";
+        fecha.textContent = match.Fecha;
+
+        // Botón para el equipo local
+        const buttonLocal = document.createElement("button");
+        buttonLocal.textContent = `Gana ${match.local}`;
+        buttonLocal.classList.add("aumentar");
+        buttonLocal.onclick = () => {
+          updateStats(match.local.trim());
+          winnerSpan.textContent = ` ${match.local} gana!`;
+          winnerSpan.style.color = "green";
+          buttonLocal.disabled = true;
+          buttonVisitante.disabled = true;
+        };
+
+        // Botón para el equipo visitante
+        const buttonVisitante = document.createElement("button");
+        buttonVisitante.textContent = `Gana ${match.visitante}`;
+        buttonVisitante.classList.add("aumentar");
+        buttonVisitante.onclick = () => {
+          updateStats(match.visitante.trim());
+          winnerSpan.textContent = ` ${match.visitante} gana!`;
+          winnerSpan.style.color = "green";
+          buttonLocal.disabled = true;
+          buttonVisitante.disabled = true;
+        };
+        div.appendChild(fecha);
+        div.appendChild(buttonLocal);
+        div.appendChild(buttonVisitante);
+        div.appendChild(winnerSpan);
+        return div;
+      }
+
+      const matchesContainer = document.getElementById("matches");
+      matches.forEach((match) => {
+        matchesContainer.appendChild(createMatchElement(match));
+      });
+
+      function updateStats(winningTeam) {
+        // Equipos a actualizar en la tabla
+        const validTeams = [
+          "RIACHUELO (LR)",
+          "FERRO",
+          "ZARATE BASKET",
+          "INDEPENDIENTE (O)",
+          "LA UNION FSA.",
+          "COMUNICACIONES",
+          "ARGENTINO (J)",
+          "UNION (SF)",
+        ];
+
+        if (validTeams.includes(winningTeam)) {
+          const rows = document.querySelectorAll("#statsTable tbody tr");
+          rows.forEach((row) => {
+            const team = row.getAttribute("data-team");
+            if (team === winningTeam) {
+              let pg = parseInt(row.cells[1].textContent, 10);
+              let pj = parseInt(row.cells[2].textContent, 10);
+              let pts = parseInt(row.cells[3].textContent, 10);
+              let porc = parseFloat(row.cells[4].textContent.replace("%", ""));
+
+              pg += 1;
+              pj += 1;
+              pts += 2; // Asumiendo que cada victoria da 2 puntos
+              porc = (pg / pj).toFixed(3);
+
+              row.cells[1].textContent = pg;
+              row.cells[2].textContent = pj;
+              row.cells[3].textContent = pts;
+              row.cells[4].textContent = `${porc}%`;
+
+              sortTable();
+            }
+          });
+        } else {
+          console.log("El equipo ganador seleccionado no está en la tabla de estadísticas.");
+        }
+      }
+
+      function sortTable() {
+        const tbody = document.querySelector("#statsTable tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        rows.sort((a, b) => {
+          const ptsA = parseInt(a.cells[3].textContent, 10);
+          const ptsB = parseInt(b.cells[3].textContent, 10);
+          const porcA = parseFloat(a.cells[4].textContent.replace("%", ""));
+          const porcB = parseFloat(b.cells[4].textContent.replace("%", ""));
+
+          if (ptsA !== ptsB) {
+            return ptsB - ptsA;
+          } else {
+            return porcB - porcA;
+          }
+        });
+
+        tbody.innerHTML = "";
+        rows.forEach((row) => tbody.appendChild(row));
+      }
+    </script>
+  </body>
+</html>
