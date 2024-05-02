@@ -3,6 +3,9 @@ name: Ejecutar Script Node.js
 on:
   schedule:
     - cron: '0 */6 * * *'
+  push:
+    branches:
+      - master 
 
 jobs:
   execute_script:
