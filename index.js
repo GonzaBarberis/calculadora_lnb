@@ -38,7 +38,6 @@ async function conseguirResultados() {
   const isProduction = process.env.NODE_ENV === "production";
 
   if (isProduction) {
-    console.log("# En produccion");
     browser = await puppeteer.launch({
       executablePath: "/usr/bin/google-chrome", // Ruta para Ubuntu runner en GitHub Actions
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -78,8 +77,6 @@ async function conseguirResultados() {
   await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.press("Enter");
   await new Promise((r) => setTimeout(r, 15000));
-
-  console.log(await frame.content());
 
   let equipos = ["RIACHUELO (LR)", "FERRO", "ZARATE BASKET", "INDEPENDIENTE (O)", "LA UNION FSA.", "COMUNICACIONES", "ARGENTINO (J)", "UNION (SF)"];
   let equipoV;
