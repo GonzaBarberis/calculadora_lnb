@@ -2,10 +2,14 @@ name: Ejecutar Script Node.js
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: "0 */6 * * *"
   push:
     branches:
-      - master 
+      - master
+
+permissions:
+  contents: write
+  issues: read
 
 jobs:
   execute_script:
@@ -13,11 +17,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18' # Especifica la versión de Node.js que necesitas
+          node-version: "18" # Especifica la versión de Node.js que necesitas
 
       - name: Install dependencies
         run: npm install

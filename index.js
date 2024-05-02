@@ -38,9 +38,9 @@ async function conseguirResultados() {
   const page = await browser.newPage();
   await page.goto("https://www.laliganacional.com.ar/laliga/page/estadisticas", { waitUntil: "networkidle0" });
 
-  if (yaBusco == true) {
-    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
-  }
+  // if (yaBusco == true) {
+  //   await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+  // }
 
   console.log("# Iniciando búsqueda de info");
   await page.waitForSelector('iframe[src*="widgetscab.gesdeportiva.es"]');
@@ -66,7 +66,9 @@ async function conseguirResultados() {
   let equipoV;
   let equipoL;
 
-  yaBusco = true;
+  // yaBusco = true;
+
+  console.log("# Datepickers configurados, buscando en tabla");
 
   for (var i = 11; i <= 61; i++) {
     try {
