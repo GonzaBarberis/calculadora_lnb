@@ -1,4 +1,6 @@
-const puppeteer = require("puppeteer");
+//const puppeteer = require("puppeteer");
+
+const puppeteer = require("puppeteer-core");
 
 const fs = require("fs");
 const path = require("path");
@@ -11,14 +13,20 @@ let matches;
 let yaBusco = false;
 
 async function conseguirResultados() {
+  // const browser = await puppeteer.launch({
+  //   headless: false,
+  //   ignoreHTTPSErrors: true,
+  //   args: [`--window-size=1980,720`, "--no-sandbox", "--disable-setuid-sandbox"],
+  //   defaultViewport: {
+  //     width: 1980,
+  //     height: 720,
+  //   },
+  // });
+
   const browser = await puppeteer.launch({
-    headless: false,
-    ignoreHTTPSErrors: true,
-    args: [`--window-size=1980,720`, "--no-sandbox", "--disable-setuid-sandbox"],
-    defaultViewport: {
-      width: 1980,
-      height: 720,
-    },
+    executablePath: "/usr/bin/google-chrome", // Ruta para Ubuntu runner en GitHub Actions
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    headless: true, // Normalmente se ejecuta en modo headless en CI/CD
   });
 
   const page = await browser.newPage();
