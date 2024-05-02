@@ -25,8 +25,13 @@ jobs:
       - name: Run script
         run: node index.js
 
+      - name: Setup Git config
+        run: |
+          git config --global user.name 'Gonzalo'
+          git config --global user.email 'gonziibarberis@gmail.com'
+
       - name: Commit changes
         run: |
-              git add -A
-              git commit -m "Datos actualizados" || echo "No hay cambios"
-              git push
+          git add -A
+          git commit -m "Datos actualizados" || echo "No hay cambios"
+          git push origin master
