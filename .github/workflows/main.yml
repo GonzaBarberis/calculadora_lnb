@@ -11,6 +11,9 @@ permissions:
   contents: write
   issues: read
 
+env:
+  NODE_ENV: production
+
 jobs:
   execute_script:
     runs-on: ubuntu-latest
