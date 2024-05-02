@@ -1,0 +1,29 @@
+name: Ejecutar Script Node.js
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  execute_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18' # Especifica la versión de Node.js que necesitas
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script
+        run: node index.js
+
+      - name: Commit changes
+        run: |
+              git add -A
+              git commit -m "Datos actualizados" || echo "No hay cambios"
+              git push
