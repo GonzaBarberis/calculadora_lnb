@@ -1,5 +1,3 @@
 node_modules
 *.txt
 calculadora.html
-package.json
-package-lock.json

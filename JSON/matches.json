@@ -1,0 +1,164 @@
+[
+  {
+    "local": "ARGENTINO (J)",
+    "visitante": "RIACHUELO (LR)",
+    "Fecha": "30-04-2024 22:00",
+    "ganador": 1
+  },
+  {
+    "local": "PLATENSE",
+    "visitante": "RIACHUELO (LR)",
+    "Fecha": "02-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "LA UNION FSA.",
+    "visitante": "COMUNICACIONES",
+    "Fecha": "03-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "GIMNASIA (CR)",
+    "visitante": "RIACHUELO (LR)",
+    "Fecha": "04-05-2024 20:00",
+    "ganador": null
+  },
+  {
+    "local": "OBERA",
+    "visitante": "COMUNICACIONES",
+    "Fecha": "05-05-2024 20:00",
+    "ganador": null
+  },
+  {
+    "local": "FERRO",
+    "visitante": "OBRAS",
+    "Fecha": "05-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "ZARATE BASKET",
+    "visitante": "ARGENTINO (J)",
+    "Fecha": "06-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "INDEPENDIENTE (O)",
+    "visitante": "UNION (SF)",
+    "Fecha": "06-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "BOCA",
+    "visitante": "ARGENTINO (J)",
+    "Fecha": "08-05-2024 20:00",
+    "ganador": null
+  },
+  {
+    "local": "INSTITUTO",
+    "visitante": "UNION (SF)",
+    "Fecha": "08-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "PEÑAROL (MDP)",
+    "visitante": "ARGENTINO (J)",
+    "Fecha": "10-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "RIACHUELO (LR)",
+    "visitante": "UNION (SF)",
+    "Fecha": "10-05-2024 22:00",
+    "ganador": null
+  },
+  {
+    "local": "ZARATE BASKET",
+    "visitante": "GIMNASIA (CR)",
+    "Fecha": "10-05-2024 22:10",
+    "ganador": null
+  },
+  {
+    "local": "PEÑAROL (MDP)",
+    "visitante": "FERRO",
+    "Fecha": "12-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "BOCA",
+    "visitante": "INDEPENDIENTE (O)",
+    "Fecha": "13-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "UNION (SF)",
+    "visitante": "COMUNICACIONES",
+    "Fecha": "14-05-2024 21:30",
+    "ganador": null
+  },
+  {
+    "local": "FERRO",
+    "visitante": "INDEPENDIENTE (O)",
+    "Fecha": "15-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "LA UNION FSA.",
+    "visitante": "SAN LORENZO",
+    "Fecha": "16-05-2024 21:30",
+    "ganador": null
+  },
+  {
+    "local": "PEÑAROL (MDP)",
+    "visitante": "INDEPENDIENTE (O)",
+    "Fecha": "17-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "RIACHUELO (LR)",
+    "visitante": "OBERA",
+    "Fecha": "17-05-2024 22:00",
+    "ganador": null
+  },
+  {
+    "local": "ARGENTINO (J)",
+    "visitante": "COMUNICACIONES",
+    "Fecha": "18-05-2024 11:30",
+    "ganador": null
+  },
+  {
+    "local": "UNION (SF)",
+    "visitante": "OBERA",
+    "Fecha": "19-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "FERRO",
+    "visitante": "ZARATE BASKET",
+    "Fecha": "20-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "INDEPENDIENTE (O)",
+    "visitante": "PLATENSE",
+    "Fecha": "21-05-2024 21:00",
+    "ganador": null
+  },
+  {
+    "local": "LA UNION FSA.",
+    "visitante": "OBRAS",
+    "Fecha": "21-05-2024 21:30",
+    "ganador": null
+  },
+  {
+    "local": "FERRO",
+    "visitante": "SAN LORENZO",
+    "Fecha": "23-05-2024 20:00",
+    "ganador": null
+  },
+  {
+    "local": "COMUNICACIONES",
+    "visitante": "BOCA",
+    "Fecha": "23-05-2024 21:00",
+    "ganador": null
+  }
+]

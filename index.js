@@ -1,6 +1,14 @@
 const puppeteer = require("puppeteer");
+
+const fs = require("fs");
+const path = require("path");
+
+const matchesFilePath = path.join(__dirname, "/JSON/matches.json");
+//const matchesJSON = JSON.parse(fs.readFileSync(matchesFilePath, "utf-8"));
+
 let rawData = [];
 let matches;
+let yaBusco = false;
 
 async function conseguirResultados() {
   const browser = await puppeteer.launch({
@@ -16,26 +24,35 @@ async function conseguirResultados() {
   const page = await browser.newPage();
   await page.goto("https://www.laliganacional.com.ar/laliga/page/estadisticas", { waitUntil: "networkidle0" });
 
+  if (yaBusco == true) {
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+  }
+
   console.log("# Iniciando búsqueda de info");
   await page.waitForSelector('iframe[src*="widgetscab.gesdeportiva.es"]');
   const iframeElement = await page.$('iframe[src*="widgetscab.gesdeportiva.es"]');
   const frame = await iframeElement.contentFrame();
 
-  await new Promise((r) => setTimeout(r, 600));
+  await new Promise((r) => setTimeout(r, 400));
   let datePickerInicio = await frame.$x('//*[@id="FechaInicio"]');
   await datePickerInicio[0].focus();
+  await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.type("26042024");
-  await new Promise((r) => setTimeout(r, 600));
+  await new Promise((r) => setTimeout(r, 200));
 
   let datePicker = await frame.$x('//*[@id="FechaFin"]');
   await datePicker[0].focus();
+  await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.type("25052024");
+  await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.press("Enter");
   await new Promise((r) => setTimeout(r, 5000));
 
   let equipos = ["RIACHUELO (LR)", "FERRO", "ZARATE BASKET", "INDEPENDIENTE (O)", "LA UNION FSA.", "COMUNICACIONES", "ARGENTINO (J)", "UNION (SF)"];
   let equipoV;
   let equipoL;
+
+  yaBusco = true;
 
   for (var i = 11; i <= 61; i++) {
     try {
@@ -76,22 +93,23 @@ async function conseguirResultados() {
       }
     } catch (error) {
       console.error("# ! Error al buscar el elemento en el iframe:", error);
-
       await browser.close();
       return;
     }
   }
 
-  formatearJSON();
-
   await new Promise((r) => setTimeout(r, 3000));
   await browser.close();
+
+  await formatearJSON();
 
   console.log("# Búsqueda finalizada con éxito");
 }
 
-function formatearJSON() {
-  matches = rawData.map((data) => {
+let intentos;
+
+async function formatearJSON() {
+  matchesJSON = rawData.map((data) => {
     // Primero, separar la cadena en partes usando "Fecha:" y "ganador:"
     const parts = data.split("Fecha:");
     const teamsPart = parts[0].trim(); // "L: ARGENTINO (J) - V: RIACHUELO (LR)"
@@ -111,21 +129,33 @@ function formatearJSON() {
 
     // Crear el objeto JSON para este match incluyendo el ganador
 
-    if (winnerPart == "noHay") {
-      ganador = null;
-    } else {
-      ganador = parseInt(winnerPart);
-    }
+    // if (winnerPart == "noHay") {
+    //   ganador = null;
+    // } else {
+    //   ganador = parseInt(winnerPart);
+    // }
 
     return {
       local: localPart,
       visitante: visitorPart,
       Fecha: formattedDateTime,
-      ganador: ganador, // Convertir a número el identificador del ganador
+      ganador: winnerPart != "noHay" ? parseInt(winnerPart) : null,
     };
   });
 
-  console.log(matches);
+  if (matchesJSON[0].local == "UNION (SF)") {
+    intentos += 1;
+
+    if (intentos > 3) {
+      return;
+    }
+    console.log("El primer equipo es: ", matchesJSON[0].local);
+    console.log(" #Los resultados son incorrectos, obteniendo nuevos datos...");
+    await conseguirResultados();
+  } else {
+    fs.writeFileSync(matchesFilePath, JSON.stringify(matchesJSON, null, 2));
+    console.log("# Datos exportados a JSON con éxito");
+  }
 }
 
 console.log("# Iniciando función");
