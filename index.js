@@ -68,12 +68,30 @@ async function conseguirResultados() {
   await datePickerInicio[0].focus();
   await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.type("26042024");
+
+  if (datePickerInicio.length > 0) {
+    // Asegúrate de que el elemento fue encontrado
+    const dateValue = await frame.evaluate((el) => el.value, datePickerInicio[0]);
+    console.log("Fecha seleccionada Inicio:", dateValue);
+  } else {
+    console.log("Input de fecha no encontrado.");
+  }
+
   await new Promise((r) => setTimeout(r, 200));
 
   let datePicker = await frame.$x('//*[@id="FechaFin"]');
   await datePicker[0].focus();
   await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.type("25052024");
+
+  if (datePicker.length > 0) {
+    // Asegúrate de que el elemento fue encontrado
+    const dateValue = await frame.evaluate((el) => el.value, datePicker[0]);
+    console.log("Fecha seleccionada:", dateValue);
+  } else {
+    console.log("Input de fecha no encontrado.");
+  }
+
   await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.press("Enter");
   await new Promise((r) => setTimeout(r, 15000));
