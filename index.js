@@ -148,7 +148,7 @@ async function formatearJSON() {
 
     if (intentos > 3) {
       return;
-    }
+    } //prueba
     console.log("El primer equipo es: ", matchesJSON[0].local);
     console.log(" #Los resultados son incorrectos, obteniendo nuevos datos...");
     await conseguirResultados();
