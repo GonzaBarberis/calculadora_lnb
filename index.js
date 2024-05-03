@@ -71,12 +71,12 @@ async function conseguirResultados() {
   await page.keyboard.press("Backspace");
   await page.keyboard.press("Backspace");
   await new Promise((r) => setTimeout(r, 500));
-  await page.keyboard.type("11");
+  await page.keyboard.type("04");
   await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.press("Backspace");
   await page.keyboard.press("Backspace");
   await new Promise((r) => setTimeout(r, 500));
-  await page.keyboard.type("22");
+  await page.keyboard.type("26");
   await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.press("Backspace");
   await new Promise((r) => setTimeout(r, 500));
@@ -92,76 +92,76 @@ async function conseguirResultados() {
     console.log("Input de fecha no encontrado.");
   }
 
-  // await new Promise((r) => setTimeout(r, 200));
+  await new Promise((r) => setTimeout(r, 200));
 
-  // let datePicker = await frame.$x('//*[@id="FechaFin"]');
-  // await datePicker[0].focus();
-  // await new Promise((r) => setTimeout(r, 400));
-  // await page.keyboard.type("25052024");
+  let datePicker = await frame.$x('//*[@id="FechaFin"]');
+  await datePicker[0].focus();
+  await new Promise((r) => setTimeout(r, 400));
+  await page.keyboard.type("25052024");
 
-  // if (datePicker.length > 0) {
-  //   // Asegúrate de que el elemento fue encontrado
-  //   const dateValue = await frame.evaluate((el) => el.value, datePicker[0]);
-  //   console.log("Fecha seleccionada:", dateValue);
-  // } else {
-  //   console.log("Input de fecha no encontrado.");
-  // }
+  if (datePicker.length > 0) {
+    // Asegúrate de que el elemento fue encontrado
+    const dateValue = await frame.evaluate((el) => el.value, datePicker[0]);
+    console.log("Fecha seleccionada:", dateValue);
+  } else {
+    console.log("Input de fecha no encontrado.");
+  }
 
-  // await new Promise((r) => setTimeout(r, 400));
-  // await page.keyboard.press("Enter");
-  // await new Promise((r) => setTimeout(r, 15000));
+  await new Promise((r) => setTimeout(r, 400));
+  await page.keyboard.press("Enter");
+  await new Promise((r) => setTimeout(r, 15000));
 
-  // let equipos = ["RIACHUELO (LR)", "FERRO", "ZARATE BASKET", "INDEPENDIENTE (O)", "LA UNION FSA.", "COMUNICACIONES", "ARGENTINO (J)", "UNION (SF)"];
-  // let equipoV;
-  // let equipoL;
+  let equipos = ["RIACHUELO (LR)", "FERRO", "ZARATE BASKET", "INDEPENDIENTE (O)", "LA UNION FSA.", "COMUNICACIONES", "ARGENTINO (J)", "UNION (SF)"];
+  let equipoV;
+  let equipoL;
 
-  // // yaBusco = true;
+  // yaBusco = true;
 
-  // console.log("# Datepickers configurados, buscando en tabla");
+  console.log("# Datepickers configurados, buscando en tabla");
 
-  // for (var i = 11; i <= 61; i++) {
-  //   try {
-  //     equipoL = await frame.$eval(`body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td:nth-child(2)`, (element) =>
-  //       element.textContent.trim().toUpperCase()
-  //     );
-  //     equipoLPuntos = await frame.$eval(`body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td.puntos_locales`, (element) =>
-  //       element.textContent.trim().toUpperCase()
-  //     );
+  for (var i = 11; i <= 61; i++) {
+    try {
+      equipoL = await frame.$eval(`body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td:nth-child(2)`, (element) =>
+        element.textContent.trim().toUpperCase()
+      );
+      equipoLPuntos = await frame.$eval(`body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td.puntos_locales`, (element) =>
+        element.textContent.trim().toUpperCase()
+      );
 
-  //     equipoV = await frame.$eval(`body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td:nth-child(7)`, (element) =>
-  //       element.textContent.trim().toUpperCase()
-  //     );
-  //     equipoVPuntos = await frame.$eval(
-  //       `body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td.puntos_visitantes`,
-  //       (element) => element.textContent.trim().toUpperCase()
-  //     );
+      equipoV = await frame.$eval(`body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td:nth-child(7)`, (element) =>
+        element.textContent.trim().toUpperCase()
+      );
+      equipoVPuntos = await frame.$eval(
+        `body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td.puntos_visitantes`,
+        (element) => element.textContent.trim().toUpperCase()
+      );
 
-  //     fecha = await frame.$eval(`body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td.text-center`, (element) =>
-  //       element.textContent.trim().toUpperCase()
-  //     );
+      fecha = await frame.$eval(`body > div.tarjeta-widget > div > div > table > tbody > tr:nth-child(${i}) > td.text-center`, (element) =>
+        element.textContent.trim().toUpperCase()
+      );
 
-  //     if (equipos.includes(equipoL) || equipos.includes(equipoV)) {
-  //       puntosL = parseInt(equipoLPuntos);
-  //       puntosV = parseInt(equipoVPuntos);
+      if (equipos.includes(equipoL) || equipos.includes(equipoV)) {
+        puntosL = parseInt(equipoLPuntos);
+        puntosV = parseInt(equipoVPuntos);
 
-  //       if (puntosL != 0) {
-  //         let ganador;
-  //         if (puntosL > puntosV) {
-  //           ganador = 1;
-  //         } else {
-  //           ganador = 2;
-  //         }
-  //         rawData.push(`L: ${equipoL} - V: ${equipoV} Fecha: ${fecha} ganador: ${ganador}`);
-  //       } else {
-  //         rawData.push(`L: ${equipoL} - V: ${equipoV} Fecha: ${fecha} ganador: noHay`);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("# ! Error al buscar el elemento en el iframe:", error);
-  //     await browser.close();
-  //     return;
-  //   }
-  // }
+        if (puntosL != 0) {
+          let ganador;
+          if (puntosL > puntosV) {
+            ganador = 1;
+          } else {
+            ganador = 2;
+          }
+          rawData.push(`L: ${equipoL} - V: ${equipoV} Fecha: ${fecha} ganador: ${ganador}`);
+        } else {
+          rawData.push(`L: ${equipoL} - V: ${equipoV} Fecha: ${fecha} ganador: noHay`);
+        }
+      }
+    } catch (error) {
+      console.error("# ! Error al buscar el elemento en el iframe:", error);
+      await browser.close();
+      return;
+    }
+  }
 
   await new Promise((r) => setTimeout(r, 3000));
   await browser.close();
