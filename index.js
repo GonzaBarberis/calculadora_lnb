@@ -69,12 +69,14 @@ async function conseguirResultados() {
   await datePickerInicio[0].focus();
   await new Promise((r) => setTimeout(r, 200));
   await page.keyboard.press("Backspace");
-  await new Promise((r) => setTimeout(r, 500));
-  await page.keyboard.type("44");
-  await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.press("Backspace");
   await new Promise((r) => setTimeout(r, 500));
-  await page.keyboard.type("29");
+  await page.keyboard.type("11");
+  await new Promise((r) => setTimeout(r, 400));
+  await page.keyboard.press("Backspace");
+  await page.keyboard.press("Backspace");
+  await new Promise((r) => setTimeout(r, 500));
+  await page.keyboard.type("22");
   await new Promise((r) => setTimeout(r, 400));
   await page.keyboard.press("Backspace");
   await new Promise((r) => setTimeout(r, 500));
