@@ -38,6 +38,7 @@ async function conseguirResultados() {
   const isProduction = process.env.NODE_ENV === "production";
 
   if (isProduction) {
+    console.log("es produccion");
     browser = await puppeteer.launch({
       executablePath: "/usr/bin/google-chrome", // Ruta para Ubuntu runner en GitHub Actions
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
