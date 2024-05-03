@@ -67,8 +67,17 @@ async function conseguirResultados() {
   await new Promise((r) => setTimeout(r, 400));
   let datePickerInicio = await frame.$x('//*[@id="FechaInicio"]');
   await datePickerInicio[0].focus();
+  await new Promise((r) => setTimeout(r, 200));
+  await page.keyboard.press("Backspace");
+  await page.keyboard.type("26");
   await new Promise((r) => setTimeout(r, 400));
-  await page.keyboard.type("26042024");
+  await page.keyboard.press("Backspace");
+  await page.keyboard.type("04");
+  await new Promise((r) => setTimeout(r, 400));
+  await page.keyboard.press("Backspace");
+  await page.keyboard.type("2024");
+  await new Promise((r) => setTimeout(r, 400));
+  // await page.keyboard.type("26042024");
 
   if (datePickerInicio.length > 0) {
     // Asegúrate de que el elemento fue encontrado
