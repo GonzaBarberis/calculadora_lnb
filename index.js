@@ -96,8 +96,21 @@ async function conseguirResultados() {
 
   let datePicker = await frame.$x('//*[@id="FechaFin"]');
   await datePicker[0].focus();
+  await new Promise((r) => setTimeout(r, 200));
+  await page.keyboard.press("Backspace");
+  await page.keyboard.press("Backspace");
+  await new Promise((r) => setTimeout(r, 500));
+  await page.keyboard.type("05");
   await new Promise((r) => setTimeout(r, 400));
-  await page.keyboard.type("25052024");
+  await page.keyboard.press("Backspace");
+  await page.keyboard.press("Backspace");
+  await new Promise((r) => setTimeout(r, 500));
+  await page.keyboard.type("25");
+  await new Promise((r) => setTimeout(r, 400));
+  await page.keyboard.press("Backspace");
+  await new Promise((r) => setTimeout(r, 500));
+  await page.keyboard.type("2024");
+  await new Promise((r) => setTimeout(r, 400));
 
   if (datePicker.length > 0) {
     // Asegúrate de que el elemento fue encontrado
