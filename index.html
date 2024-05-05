@@ -6,15 +6,26 @@
   <title>Calculadora LNB</title>
   <link rel="icon" href="https://laliganacional.com.ar/laliga/images/logopelota.svg" type="image/icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <style>
+    * {
+
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+
+    }
+
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 20px;
 
       color: #333;
-      background-image: url("IMG/fondo1.jpg");
+      background-image: url("IMG/FondoCancha.jpeg");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
@@ -31,21 +42,19 @@
       text-align: center;
       color: #ffffff;
       /* Asegúrate de que el color contrasta bien con el fondo */
-      font-size: 48px;
-      /* Ajusta el tamaño de la fuente según las necesidades de tu diseño */
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 42px;
       /* O elige una tipografía que se ajuste al tema del baloncesto */
       font-weight: bold;
       /* Hace que el texto sea más grueso y legible */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 9);
       /* Añade sombra para mejorar la legibilidad sobre fondos complejos */
       margin: 0.67em 0;
       /* Espaciado estándar para h1, ajustable según necesidad */
       padding: 20px;
       /* Padding superior e inferior para dar espacio alrededor del texto */
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.2);
       /* Opcional: un fondo sutil para ayudar a que el texto resalte más */
-      border-radius: 10px;
+
       /* Opcional: bordes redondeados si se añade un fondo */
       width: fit-content;
       /* Ajusta el ancho al contenido y centra */
@@ -60,7 +69,8 @@
       border-collapse: collapse;
       margin: 20px 0;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-      background-color: white;
+      color: white;
+      font-weight: 500;
     }
 
     th,
@@ -82,6 +92,7 @@
 
     tr:nth-last-child(2) {
       background-color: #ffd700;
+      color: black;
     }
 
     tr:last-child {
@@ -90,49 +101,56 @@
     }
 
     .reinicio {
-      background-color: #1e6900;
+      background-color: #ca6f00;
       color: white;
       border: none;
       padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
       transition: background-color 0.3s;
-      border-radius: 5px;
       display: block;
-      width: 200px;
+      width: 400px;
+      height: 50px;
       margin: 20px auto;
+      border-radius: 2px;
     }
 
     .reinicio:hover {
-      background-color: #134201;
+      background-color: #af6101;
     }
 
     .match {
-      background-color: #ffffff;
+      /* background-color: rgb(255 255 255 / 100%); */
       padding: 10px;
       margin-bottom: 10px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 0px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
       width: 900px;
+      color: white;
+      /* border: 2px solid rgb(179, 179, 179); */
+      border-bottom: 3px solid rgb(255, 255, 255);
+      margin-top: -2px;
+
     }
 
     button {
-      background-color: #28a745;
+      background-color: #dc7900;
       color: white;
       border: none;
       padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
       transition: background-color 0.3s;
-      border-radius: 5px;
+      border-radius: 3px;
       margin-right: 20px;
+      transition: transform 0.3s ease;
     }
 
     button:hover {
-      background-color: #218838;
+      background-color: #a15900;
+      transform: scale(1.05);
     }
 
     .todo {
@@ -166,6 +184,7 @@
     button:disabled {
       background-color: grey;
       cursor: not-allowed;
+      transform: none
     }
 
     .aumentar {
@@ -179,7 +198,7 @@
 </head>
 
 <body>
-  <h1>Calculadora de posiciones 'Zona Permanencia' LNB</h1>
+  <h1> <i class="fa-solid fa-ranking-star"></i> Calculadora de posiciones 'Zona Permanencia' LNB</h1>
 
   <div class="todo content">
     <div class="tabla">
@@ -190,7 +209,7 @@
             <th>PG</th>
             <th>PJ</th>
             <th>PTS</th>
-            <th>PORC</th>
+            <th>%</th>
           </tr>
         </thead>
         <tbody>
@@ -284,7 +303,8 @@
         </tbody>
       </table>
 
-      <button onclick="window.location.reload();" class="reinicio aumentar">Reiniciar Resultados</button>
+      <button onclick="window.location.reload();" class="reinicio aumentar"><i class="fa-solid fa-rotate"></i>
+        Reiniciar Resultados</button>
     </div>
 
     <div id="matches">
@@ -342,14 +362,14 @@
       if (match.ganador !== null) {
         const winnerName = match.ganador === 1 ? match.local : match.visitante;
         spanWinner.textContent = `Ganó ${winnerName}`;
-        spanWinner.style.color = "green";
+        spanWinner.style.color = "#ffb900";
         buttonLocal.disabled = true;
         buttonVisitante.disabled = true;
         updateStats(winnerName.trim());
       } else {
         buttonLocal.onclick = () => {
           spanWinner.textContent = `Gana ${match.local}`;
-          spanWinner.style.color = "green";
+          spanWinner.style.color = "#ff7900";
           buttonLocal.disabled = true;
           buttonVisitante.disabled = true;
           updateStats(match.local.trim());
@@ -357,7 +377,7 @@
 
         buttonVisitante.onclick = () => {
           spanWinner.textContent = `Gana ${match.visitante}`;
-          spanWinner.style.color = "green";
+          spanWinner.style.color = "#ff7900";
           buttonLocal.disabled = true;
           buttonVisitante.disabled = true;
           updateStats(match.visitante.trim());
