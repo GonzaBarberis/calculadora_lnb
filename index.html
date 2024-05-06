@@ -30,7 +30,7 @@
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      height: 100vh;
+      height: 95vh;
       width: 95vw;
     }
 
@@ -71,6 +71,14 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
       color: white;
       font-weight: 500;
+      position: sticky;
+      top: 200px;
+    }
+
+    .tabla {
+      width: 600px;
+      min-width: 300px;
+      height: 2200px;
     }
 
     th,
@@ -113,6 +121,8 @@
       height: 50px;
       margin: 20px auto;
       border-radius: 2px;
+      position: sticky;
+      top: 650px;
     }
 
     .reinicio:hover {
@@ -160,16 +170,19 @@
       flex-wrap: wrap;
     }
 
-    .tabla {
-      width: 600px;
-      min-width: 300px;
-    }
 
-    #matches {
+
+    .partidos {
       min-width: 300px;
       padding: 20px;
       max-width: 900px;
+      height: 680px;
+      /* overflow-y: scroll;
+      overflow-x: hidden;
+      scrollbar-color: #949494 #f0f0f0; */
     }
+
+
 
     .pFecha {
       font-weight: 700;
@@ -301,13 +314,15 @@
             <td>0.242%</td>
           </tr>
         </tbody>
-      </table>
 
+
+      </table>
       <button onclick="window.location.reload();" class="reinicio aumentar"><i class="fa-solid fa-rotate"></i>
         Reiniciar Resultados</button>
+
     </div>
 
-    <div id="matches">
+    <div id="matches" class="partidos">
       <!-- Los partidos se insertarán aquí desde JavaScript -->
     </div>
   </div>
