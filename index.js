@@ -48,7 +48,7 @@ async function conseguirResultados() {
     browser = await puppeteer.launch({
       executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", // Ruta local de chrome.exe en Windows
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      headless: "new",
+      headless: false,
     });
   }
 

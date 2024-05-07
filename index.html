@@ -232,7 +232,7 @@
             <!-- ganados -->
             <td>33</td>
             <!-- jugados -->
-            <td>47</td>
+            <td>50</td>
             <!-- puntos -->
             <td>0.424%</td>
           </tr>
@@ -272,7 +272,7 @@
 
           <tr data-team="LA UNION FSA.">
             <td>LA UNION FSA.</td>
-            <td>12</td>
+            <td>11</td>
             <!-- ganados -->
             <td>35</td>
             <!-- jugados -->
@@ -287,7 +287,7 @@
             <!-- ganados -->
             <td>32</td>
             <!-- jugados -->
-            <td>41</td>
+            <td>43</td>
             <!-- puntos -->
             <td>0.281%</td>
           </tr>
@@ -374,13 +374,25 @@
       const buttonVisitante = document.createElement("button");
       buttonVisitante.textContent = `Gana ${match.visitante}`;
 
+      let winnerName
+      let loserName
+
       if (match.ganador !== null) {
-        const winnerName = match.ganador === 1 ? match.local : match.visitante;
+        if (match.ganador === 1) {
+          winnerName = match.local
+          loserName = match.visitante
+        }
+        else {
+          winnerName = match.visitante
+          loserName = match.local
+        }
+        //const winnerName = match.ganador === 1 ? match.local : match.visitante;
         spanWinner.textContent = `Ganó ${winnerName}`;
         spanWinner.style.color = "#ffb900";
         buttonLocal.disabled = true;
         buttonVisitante.disabled = true;
         updateStats(winnerName.trim());
+        updateLoser(loserName.trim());
       } else {
         buttonLocal.onclick = () => {
           spanWinner.textContent = `Gana ${match.local}`;
@@ -388,6 +400,7 @@
           buttonLocal.disabled = true;
           buttonVisitante.disabled = true;
           updateStats(match.local.trim());
+          updateLoser(match.visitante.trim());
         };
 
         buttonVisitante.onclick = () => {
@@ -396,6 +409,7 @@
           buttonLocal.disabled = true;
           buttonVisitante.disabled = true;
           updateStats(match.visitante.trim());
+          updateLoser(match.local.trim());
         };
       }
 
@@ -440,6 +454,46 @@
             row.cells[3].textContent = pts;
             row.cells[4].textContent = `${porc}%`;
 
+
+            sortTable();
+          }
+        });
+      } else {
+        console.log("El equipo ganador seleccionado no está en la tabla de estadísticas.");
+      }
+    }
+
+    function updateLoser(losingTeam) {
+      // Equipos a actualizar en la tabla
+      const validTeams = [
+        "RIACHUELO (LR)",
+        "FERRO",
+        "ZARATE BASKET",
+        "INDEPENDIENTE (O)",
+        "LA UNION FSA.",
+        "COMUNICACIONES",
+        "ARGENTINO (J)",
+        "UNION (SF)",
+      ];
+
+      if (validTeams.includes(losingTeam)) {
+        const rows = document.querySelectorAll("#statsTable tbody tr");
+        rows.forEach((row) => {
+          const team = row.getAttribute("data-team");
+          if (team === losingTeam) {
+            let pg = parseInt(row.cells[1].textContent, 10);
+            let pj = parseInt(row.cells[2].textContent, 10);
+            let pts = parseInt(row.cells[3].textContent, 10);
+            let porc = parseFloat(row.cells[4].textContent.replace("%", ""));
+
+            pj += 1;
+            porc = (pg / pj).toFixed(3);
+
+            // row.cells[1].textContent = pg;
+            row.cells[2].textContent = pj;
+            // row.cells[3].textContent = pts;
+            row.cells[4].textContent = `${porc}%`;
+
             sortTable();
           }
         });
@@ -458,12 +512,23 @@
         const porcA = parseFloat(a.cells[4].textContent.replace("%", ""));
         const porcB = parseFloat(b.cells[4].textContent.replace("%", ""));
 
-        if (ptsA !== ptsB) {
-          return ptsB - ptsA;
-        } else {
+        //   if (ptsA !== ptsB) {
+        //     return ptsB - ptsA;
+        //   } else {
+        //     return porcB - porcA;
+        //   }
+        // });
+
+
+        if (porcA !== porcB) {
           return porcB - porcA;
+        } else {
+          return ptsB - ptsA;
         }
       });
+
+
+
 
       tbody.innerHTML = "";
       rows.forEach((row) => tbody.appendChild(row));
